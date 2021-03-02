@@ -31,12 +31,8 @@ Next, read in the dataset.  A dataset of 10,000 numbers is stored in `non_normal
 
 
 ```python
-data = pd.read_csv('non_normal_dataset.csv', squeeze=True)
-print(len(data)) # 10000
+# Your code here
 ```
-
-    10000
-
 
 ## Detecting Non-Normal Datasets
 
@@ -48,12 +44,8 @@ In the cell below, use `seaborn`'s `distplot` method to visualize a histogram of
 
 
 ```python
-sns.distplot(data);
+# Your code here
 ```
-
-
-![png](index_files/index_6_0.png)
-
 
 As expected, this dataset is not normally distributed.  
 
@@ -63,15 +55,8 @@ In the cell below, use `normaltest()` to check if the dataset is normally distri
 
 
 ```python
-st.normaltest(data)
+# Your code here
 ```
-
-
-
-
-    NormaltestResult(statistic=43432.811126532004, pvalue=0.0)
-
-
 
 The output may seem a bit hard to interpret since we haven't covered hypothesis testing and p-values in further detail yet.  However, the function tests the hypothesis that the distribution passed into the function differs from the normal distribution. The null hypothesis would then be that the data *is* normally distributed. We typically reject the null hypothesis if the p-value is less than 0.05. For now, that's all you need to remember--this will make more sense once you work with p-values more which you'll do subsequently.  
 
@@ -86,20 +71,12 @@ In the cell below, write a function that takes in an array of numbers `data` and
 
 ```python
 def get_sample(data, n):
-    sample = []
-    while len(sample) != n:
-        x = np.random.choice(data)
-        sample.append(x)
-    
-    return sample
+    pass
 
 test_sample = get_sample(data, 30)
 print(test_sample[:5]) 
 # [56, 12, 73, 24, 8] (This will change if you run it multiple times)
 ```
-
-    [56, 12, 73, 24, 8]
-
 
 ## Generating a Sample Mean
 
@@ -108,16 +85,13 @@ Next, we'll write another helper function that takes in a sample and returns the
 
 ```python
 def get_sample_mean(sample):
-    return sum(sample) / len(sample)
+    pass
 
 test_sample2 = get_sample(data, 30)
 test_sample2_mean = get_sample_mean(test_sample2)
 print(test_sample2_mean) 
 # 45.3 (This will also change if you run it multiple times)
 ```
-
-    45.3
-
 
 ### Creating a Sample Distribution of Sample Means
 
@@ -128,20 +102,11 @@ In the cell below, write a function that takes in 3 arguments: the dataset, the 
 
 ```python
 def create_sample_distribution(data, dist_size=100, n=30):
-    sample_dist = []
-    while len(sample_dist) != dist_size:
-        sample = get_sample(data, n)
-        sample_mean = get_sample_mean(sample)
-        sample_dist.append(sample_mean)
-    
-    return sample_dist
+    pass
 
 test_sample_dist = create_sample_distribution(data)
 print(test_sample_dist[:5]) 
 ```
-
-    [48.86666666666667, 39.43333333333333, 49.7, 54.53333333333333, 60.666666666666664]
-
 
 ## Visualizing the Sample Distribution as it Becomes Normal
 
@@ -153,26 +118,15 @@ In the cell below, create a sample distribution from `data` of `dist_size` 10, w
 
 
 ```python
-# Visualize sample distribution with n=3, 10, 30, across across mutliple iterations
-sample_dist_10 = create_sample_distribution(data, 10, 3)
-sns.distplot(sample_dist_10);
+# Your code here
 ```
-
-
-![png](index_files/index_17_0.png)
-
 
 Now, let's increase the `dist_size` to 30, and `n` to 10.  Create another visualization to compare how it changes as size increases.  
 
 
 ```python
-sample_dist_30 = create_sample_distribution(data, 30, 10)
-sns.distplot(sample_dist_30);
+# Your code here
 ```
-
-
-![png](index_files/index_19_0.png)
-
 
 The data is already looking much more 'normal' than the first sample distribution, and much more 'normal' that the raw non-normal distribution we're sampling from. 
 
@@ -180,13 +134,8 @@ In the cell below, create another sample distribution of `data` with `dist_size`
 
 
 ```python
-sample_dist_1000 = create_sample_distribution(data, 1000, 30)
-sns.distplot(sample_dist_1000);
+# Your code here
 ```
-
-
-![png](index_files/index_21_0.png)
-
 
 Great! As you can see, the dataset _approximates_ a normal distribution. It isn't pretty, but it's generally normal enough that we can use it to answer statistical questions using $z$-scores and p-values.  
 
